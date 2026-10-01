@@ -1,5 +1,22 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, RotateCcw, ShieldCheck, CheckCircle2 } from 'lucide-react';
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://brohood.in';
+
+export const metadata: Metadata = {
+  title: '7-Day Replacement & Easy Exchange Guarantee',
+  description:
+    'Complete peace of mind with 7-day doorstep replacement for size mismatches or defects. Reverse pickup available across India via WhatsApp.',
+  alternates: {
+    canonical: `${baseUrl}/returns-exchange`,
+  },
+  openGraph: {
+    title: '7-Day Replacement & Exchange Policy | BroHood India',
+    description: 'Hassle-free size replacement and transit damage guarantee on all 1:1 luxury watches and sneakers.',
+    url: `${baseUrl}/returns-exchange`,
+  },
+};
 
 export default function ReturnsExchangePage() {
   return (

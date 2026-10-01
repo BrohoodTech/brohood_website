@@ -1,5 +1,22 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Truck, ShieldCheck, Clock, MapPin } from 'lucide-react';
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://brohood.in';
+
+export const metadata: Metadata = {
+  title: 'Shipping & Cash on Delivery (COD) Policy Across India',
+  description:
+    'Free express delivery on orders above ₹1,499. Cash on Delivery (₹0 Advance) across 27,000+ Indian pin codes via Delhivery and Blue Dart. 2 to 4 business days transit.',
+  alternates: {
+    canonical: `${baseUrl}/shipping-policy`,
+  },
+  openGraph: {
+    title: 'Shipping & COD Policy | BroHood India',
+    description: 'Fast, discreet express courier shipping with COD across all cities and states in India.',
+    url: `${baseUrl}/shipping-policy`,
+  },
+};
 
 export default function ShippingPolicyPage() {
   return (
@@ -43,10 +60,10 @@ export default function ShippingPolicyPage() {
             2. Cash on Delivery (COD) Terms
           </h2>
           <p>
-            Cash on Delivery is available across 19,000+ Indian pin codes serviced by Delhivery, BlueDart, and Xpressbees.
+            Cash on Delivery is available across 27,000+ Indian pin codes serviced by Delhivery, Blue Dart, and Xpressbees with ₹0 advance payment needed.
           </p>
           <p>
-            You can pay the delivery executive in cash or scan their UPI QR code on the spot. For orders above ₹10,000, our team may make a quick confirmation call before dispatch to verify the delivery address.
+            You can pay the delivery executive in cash or scan their handheld UPI QR code (GPay, PhonePe, Paytm) at your doorstep. To ensure smooth logistics, our dispatch coordinator will make a quick 30-second phone call or WhatsApp message to verify your delivery address and chosen size before handing your sealed package to the courier.
           </p>
         </section>
 

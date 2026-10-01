@@ -1,5 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Lock } from 'lucide-react';
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://brohood.in';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy & Customer Data Protection',
+  description: 'Learn how BroHood safeguards your delivery address, phone number, and order transactions with 256-bit SSL encryption.',
+  alternates: {
+    canonical: `${baseUrl}/privacy`,
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (
@@ -27,7 +38,7 @@ export default function PrivacyPolicyPage() {
         <section className="space-y-2">
           <h2 className="text-base font-bold text-white uppercase text-amber-400">1. Information We Collect</h2>
           <p>
-            When you register, place orders, or request video call verification, we collect your name, phone number (WhatsApp), delivery address, and email for dispatch tracking. We never store debit/credit card numbers; all online payments are processed through Razorpay PCI-DSS compliant systems.
+            When you register, place orders, or contact customer support, we collect your name, phone number (WhatsApp), delivery address, and email for dispatch tracking. We never store debit/credit card numbers; all online payments are processed through Razorpay PCI-DSS compliant systems.
           </p>
         </section>
 

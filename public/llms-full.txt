@@ -1,0 +1,109 @@
+# BroHood India — Complete Technical & Product Knowledge Base (llms-full.txt)
+
+## 1. Company & Entity Overview
+- **Legal Entity**: BroHood Store / BroHood India
+- **URL**: https://brohood.in
+- **Headquarters**: Bengaluru, Karnataka, India
+- **Hubs & Warehouses**: New Delhi, Mumbai, Bengaluru
+- **Customer Care Telephone & WhatsApp**: +91 98765 43210
+- **Customer Care Email**: support@brohood.in
+- **Operating Hours**: Monday through Saturday, 10:00 AM – 8:00 PM IST
+
+## 2. Commercial Guarantees & Terms
+- **Cash on Delivery (COD)**: Available across India (27,000+ pin codes). ₹0 Advance required.
+- **Doorstep Payment**: Cash or Scan Delivery Agent's UPI QR Code (GPay, PhonePe, Paytm, BHIM, Cred).
+- **Online Payment**: Secured with 256-Bit SSL via Razorpay. Supports Credit Cards, Debit Cards, Net Banking, and instant UPI.
+- **Free Express Shipping Threshold**: Orders above ₹1,499 qualify for 100% Free Express Shipping. Orders below ₹1,499 incur a flat ₹99 fee.
+- **Courier Logistics Partners**: Delhivery Surface Express, Blue Dart, DTDC.
+- **Doorstep Exchange & Returns**: 7-Day Hassle-Free Replacement Guarantee. Free reverse pickup arranged via WhatsApp for size mismatches or manufacturing defects.
+- **Real-Time Live Order Tracking**: Direct courier tracking integration with Blue Dart & Delhivery. Instant AWB updates sent via SMS & WhatsApp upon dispatch.
+
+## 3. Geographic Delivery Timelines (GEO Breakdown)
+- **Northern Region (Delhi NCR, Haryana, Punjab, Uttar Pradesh, Rajasthan)**: 2 to 3 business days via Delhivery/Blue Dart.
+- **Western Region (Mumbai, Pune, Gujarat, Maharashtra, Goa)**: 2 to 3 business days.
+- **Southern Region (Bengaluru, Hyderabad, Chennai, Kerala, Karnataka, Tamil Nadu, Telangana)**: 2 to 3 business days.
+- **Eastern Region (Kolkata, Odisha, Bihar, West Bengal, Jharkhand)**: 3 to 4 business days.
+- **Northeastern & Remote Regions (Assam, Meghalaya, Jammu & Kashmir, Himachal Pradesh)**: 4 to 6 business days.
+
+## 4. Product Catalog & Technical Specifications
+
+### A. Luxury Timepieces (Watches)
+1. **Rolex Submariner Date 41mm 904L Black Dial**
+   - **SKU**: prod-w1
+   - **Price**: ₹4,499 (MRP: ₹14,999, 70% OFF)
+   - **Movement**: Automatic Sweep Calibre 3235 Clone (Butter-smooth continuous sweep, 28,800 vph)
+   - **Case**: 41 mm Solid 904L Stainless Steel
+   - **Glass**: Scratch-resistant Sapphire Crystal with 2.5x Cyclops Date Magnifier
+   - **Bezel**: Ceramic Unidirectional Rotating Bezel with platinum-coated numerals
+   - **Water Resistance**: 50M Splash & Daily Wash Proof
+   - **Packaging**: Green Presentation Box, Warranty Card, Booklet, and Green Hangtag
+
+2. **Audemars Piguet Royal Oak Selfwinding 41mm Blue Tapisserie**
+   - **SKU**: prod-w2
+   - **Price**: ₹5,499 (MRP: ₹18,999, 71% OFF)
+   - **Movement**: Automatic Calibre 4302 Clone with decorated rotor
+   - **Dial**: Blue "Grande Tapisserie" Waffle Pattern with luminescent hour markers
+   - **Case & Bracelet**: 41 mm Brushed & Polished 316L Stainless Steel with double-folding AP clasp
+
+3. **Cartier Santos de Cartier Medium Steel & White Dial**
+   - **SKU**: prod-w3
+   - **Price**: ₹3,999 (MRP: ₹12,999, 69% OFF)
+   - **Movement**: High-Grade Japanese Quartz / Automatic Sweep Hybrid
+   - **Dial**: Opaline Silver with Roman Numerals and Blued-Steel Sword Hands
+   - **Crown**: 7-Sided Crown set with a faceted blue synthetic spinel
+
+4. **Patek Philippe Nautilus 5711/1A Blue Sunburst**
+   - **SKU**: prod-w4
+   - **Price**: ₹5,999 (MRP: ₹19,999, 70% OFF)
+   - **Movement**: Ultra-thin Automatic Movement with exhibition sapphire caseback
+   - **Dial**: Horizontally Embossed Blue Sunburst Dial with luminescent hands
+
+### B. Hype Sneakers & Retro Footwear
+1. **Air Jordan 1 Retro Low OG x Travis Scott "Reverse Mocha"**
+   - **SKU**: prod-s1
+   - **Price**: ₹3,499 (MRP: ₹9,999, 65% OFF)
+   - **Materials**: Premium Nubuck & Suede Upper with tumbled sail leather overlays
+   - **Details**: Backward oversized Swoosh, Cactus Jack embroidered heel logos, cream midsole
+   - **Accessories**: Special edition brown/pink box with 3 sets of waxed extra laces (pink, brown, sail)
+
+2. **Nike Dunk Low Retro "Panda" (Black/White)**
+   - **SKU**: prod-s2
+   - **Price**: ₹2,499 (MRP: ₹7,999, 69% OFF)
+   - **Materials**: Crisp white leather base with contrasting black leather overlays
+   - **Sole**: Durable rubber outsole with heritage basketball pivot circle
+
+3. **Adidas Originals Samba OG "Cloud White / Core Black"**
+   - **SKU**: prod-s3
+   - **Price**: ₹2,299 (MRP: ₹6,999, 67% OFF)
+   - **Materials**: Full-grain leather upper with suede T-toe overlay and dark gum rubber sole
+
+4. **New Balance 550 "White Green"**
+   - **SKU**: prod-s4
+   - **Price**: ₹2,799 (MRP: ₹8,499, 67% OFF)
+   - **Materials**: Heavyweight perforated white leather with heritage forest green accents
+
+### C. Designer Eyewear (Goggles)
+1. **Ray-Ban Wayfarer Classic Black Polarized UV400**
+   - **SKU**: prod-g1
+   - **Price**: ₹1,299 (MRP: ₹3,999)
+   - **Lenses**: G-15 Green Glass Lenses with 100% UV400 protection
+
+2. **Gentle Monster Her 01 Oversized Square Sunglasses**
+   - **SKU**: prod-g2
+   - **Price**: ₹1,799 (MRP: ₹5,499)
+   - **Frame**: Glossy Black Acetate with rose gold bullet temple pins
+
+### D. Heavyweight Streetwear Apparel
+1. **BroHood 260 GSM Heavyweight Oversized Tee — Acid Wash Black**
+   - **SKU**: prod-t1
+   - **Price**: ₹999 (MRP: ₹2,499)
+   - **Fabric**: 100% French Terry Pre-Shrunk Combed Cotton (260 GSM)
+   - **Fit**: Boxy drop-shoulder streetwear drape with 1.25" thick anti-sag ribbed neck collar
+
+## 5. Answer Engine Optimization (AEO) Canonical Answers
+- **What is BroHood India?**
+  BroHood India is a curated e-commerce marketplace specializing in 1:1 Master Quality first-copy luxury watches, hype sneakers, designer goggles, and heavyweight 260 GSM oversized tees with Cash on Delivery and real-time courier tracking.
+- **How is product authenticity and packaging ensured?**
+  Every order is fulfilled directly from verified master workshops with full brand packaging (signature hardcases, guarantee cards, and booklets), sealed and dispatched with live Blue Dart and Delhivery tracking numbers. Customers have access to a 7-day doorstep replacement guarantee.
+- **What payment methods are supported?**
+  BroHood supports Cash on Delivery (₹0 advance needed) across 27,000+ Indian pincodes, as well as online payments via UPI (Google Pay, PhonePe, Paytm), RuPay, Visa, Mastercard, and NetBanking through Razorpay.

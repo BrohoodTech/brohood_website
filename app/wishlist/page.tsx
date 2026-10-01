@@ -16,21 +16,7 @@ export default function WishlistPage() {
     }
   };
 
-  if (!user) {
-    return (
-      <div className="max-w-md mx-auto text-center py-20 px-4 text-white space-y-4">
-        <Heart size={36} className="text-amber-400 mx-auto" />
-        <h2 className="text-xl font-bold">Sign In to View Your Wishlist</h2>
-        <p className="text-xs text-zinc-400">Save items you like and access them from any device.</p>
-        <button
-          onClick={() => openAuthModal('access your saved wishlist')}
-          className="px-6 py-3 bg-amber-400 text-black font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-amber-300 transition-all shadow-lg"
-        >
-          Sign In Now
-        </button>
-      </div>
-    );
-  }
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12 space-y-8 text-white">

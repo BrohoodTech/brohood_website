@@ -41,20 +41,6 @@ export function ProductCard({ product }: { product: Product }) {
           />
         </Link>
 
-        {/* Badges */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 items-start z-10 pointer-events-none">
-          {product.isHot && (
-            <span className="px-2 py-0.5 rounded-full bg-red-600 text-white font-black text-[9px] uppercase tracking-wider shadow-md">
-              HOT DROP
-            </span>
-          )}
-          {product.discountPercent > 0 && (
-            <span className="px-2 py-0.5 rounded-full bg-amber-400 text-black font-black text-[9px] uppercase tracking-wider shadow-md">
-              {product.discountPercent}% OFF
-            </span>
-          )}
-        </div>
-
         {/* Wishlist Button */}
         <button
           onClick={handleWishlistClick}
@@ -97,10 +83,17 @@ export function ProductCard({ product }: { product: Product }) {
         <div>
           <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-amber-400 mb-0.5">
             <span>{product.brand}</span>
-            <span className="flex items-center gap-0.5 text-zinc-400 text-[10px] font-normal">
-              <Star size={11} className="text-amber-400 fill-amber-400" />
-              <span>{product.rating}</span>
-            </span>
+            <div className="flex items-center gap-1.5 text-[10px]">
+              {product.availableColors.length > 1 && (
+                <span className="text-zinc-400 font-semibold lowercase bg-white/5 px-1.5 py-0.5 rounded">
+                  {product.availableColors.length} colors
+                </span>
+              )}
+              <span className="flex items-center gap-0.5 text-zinc-400 font-normal">
+                <Star size={11} className="text-amber-400 fill-amber-400" />
+                <span>{product.rating}</span>
+              </span>
+            </div>
           </div>
 
           <Link href={`/product/${product.slug}`} className="block">
@@ -112,15 +105,20 @@ export function ProductCard({ product }: { product: Product }) {
 
         <div className="flex items-end justify-between pt-1 border-t border-white/5">
           <div>
-            <div className="flex items-baseline gap-1.5">
+            <div className="flex items-baseline gap-1.5 flex-wrap">
               <span className="text-sm sm:text-base font-bold text-white">
                 ₹{product.price.toLocaleString('en-IN')}
               </span>
               <span className="text-[11px] text-zinc-500 line-through">
                 ₹{product.mrp.toLocaleString('en-IN')}
               </span>
+              {product.discountPercent > 0 && (
+                <span className="text-[10px] font-bold text-emerald-400">
+                  ({product.discountPercent}% OFF)
+                </span>
+              )}
             </div>
-            <span className="text-[10px] text-emerald-400 font-medium">Free Delivery</span>
+            <span className="text-[10px] text-emerald-400 font-medium whitespace-nowrap block">Free Delivery</span>
           </div>
 
           {/* Quick Add Button */}

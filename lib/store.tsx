@@ -55,6 +55,10 @@ interface StoreContextType {
   isCartDrawerOpen: boolean;
   openCartDrawer: () => void;
   closeCartDrawer: () => void;
+
+  isSearchModalOpen: boolean;
+  openSearchModal: () => void;
+  closeSearchModal: () => void;
 }
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
@@ -83,6 +87,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalContext, setAuthModalContext] = useState('');
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   // Initialize from LocalStorage
   useEffect(() => {
@@ -161,14 +166,11 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const openCartDrawer = () => setIsCartDrawerOpen(true);
   const closeCartDrawer = () => setIsCartDrawerOpen(false);
 
+  const openSearchModal = () => setIsSearchModalOpen(true);
+  const closeSearchModal = () => setIsSearchModalOpen(false);
+
   // Cart Operations
   const addToCart = (product: Product, size?: string, color?: string, quantity = 1): boolean => {
-    // If not logged in, enforce auth requirement per user specification
-    if (!user) {
-      openAuthModal(`add "${product.title}" to your shopping bag`);
-      return false;
-    }
-
     const effectiveSize = size || product.availableSizes[0] || 'Standard';
     const effectiveColor = color || product.availableColors[0] || 'Original';
     const itemId = `${product.id}-${effectiveSize}-${effectiveColor}`;
@@ -180,13 +182,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       updated = [...cart];
       updated[existingIndex].quantity += quantity;
     } else {
+      const itemImage = (product.colorImages && effectiveColor && product.colorImages[effectiveColor]?.[0])
+        ? product.colorImages[effectiveColor][0]
+        : product.primaryImage;
+
       const newItem: CartItem = {
         id: itemId,
         productId: product.id,
         productSlug: product.slug,
         title: product.title,
         brand: product.brand,
-        image: product.primaryImage,
+        image: itemImage,
         selectedSize: effectiveSize,
         selectedColor: effectiveColor,
         price: product.price,
@@ -260,11 +266,6 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   // Wishlist Operations
   const toggleWishlist = (product: Product) => {
-    if (!user) {
-      openAuthModal(`save "${product.title}" to your wishlist`);
-      return;
-    }
-
     const exists = wishlist.some((item) => item.productId === product.id);
     let updated: WishlistItem[];
 
@@ -388,6 +389,10 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         isCartDrawerOpen,
         openCartDrawer,
         closeCartDrawer,
+
+        isSearchModalOpen,
+        openSearchModal,
+        closeSearchModal,
       }}
     >
       {children}

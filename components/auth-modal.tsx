@@ -1,51 +1,68 @@
 'use client';
 
 import { useState } from 'react';
-import { X, Mail, Sparkles, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
+import { X, Mail, Lock, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { useStore } from '@/lib/store';
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
-  actionContext?: string; // e.g. "add this sneaker to your bag"
+  actionContext?: string;
 }
 
-export function AuthModal({ isOpen, onClose, onSuccess, actionContext = 'access your bag & wishlist' }: AuthModalProps) {
+export function AuthModal({ isOpen, onClose, onSuccess, actionContext = 'access your account' }: AuthModalProps) {
+  const { login } = useStore();
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   if (!isOpen) return null;
 
   const handleGoogleLogin = () => {
-    // If Supabase client is initialized, triggers signInWithOAuth
-    // For demo/dev preview, simulate instant login
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      localStorage.setItem('brohood_user', JSON.stringify({ email: 'user@brohood.in', provider: 'google' }));
+      login({
+        email: 'customer@brohood.in',
+        fullName: 'BroHood Customer',
+        phone: '9876543210',
+        provider: 'google',
+      });
       if (onSuccess) onSuccess();
       onClose();
-    }, 600);
+    }, 500);
   };
 
-  const handleEmailLogin = (e: React.FormEvent) => {
+  const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !password) {
+      setError('Please enter both email and password.');
+      return;
+    }
     setLoading(true);
+    setError('');
     setTimeout(() => {
       setLoading(false);
       setSent(true);
-      localStorage.setItem('brohood_user', JSON.stringify({ email, provider: 'email' }));
+      login({
+        email,
+        fullName: email.split('@')[0],
+        phone: '9876543210',
+        provider: 'email',
+      });
       setTimeout(() => {
         if (onSuccess) onSuccess();
         onClose();
-      }, 1000);
-    }, 700);
+      }, 700);
+    }, 600);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in select-none">
       <div className="relative w-full max-w-md bg-[#121316] border border-white/10 rounded-2xl p-6 sm:p-8 text-white shadow-2xl">
         <button
           onClick={onClose}
@@ -56,30 +73,29 @@ export function AuthModal({ isOpen, onClose, onSuccess, actionContext = 'access 
         </button>
 
         <div className="text-center mb-6">
-          <div className="inline-flex p-3 rounded-full bg-amber-400/10 text-amber-400 mb-3">
-            <Sparkles size={24} />
-          </div>
-          <h3 className="text-xl font-bold tracking-tight">Sign In to BroHood</h3>
-          <p className="text-xs text-zinc-400 mt-1.5">
-            Please sign in to {actionContext}. Free express shipping and order tracking unlocked.
+          <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight font-heading text-white">
+            Sign In to Your Account
+          </h2>
+          <p className="text-xs text-zinc-400 mt-1">
+            Access your orders, delivery status, and profile.
           </p>
         </div>
 
         {sent ? (
-          <div className="text-center py-6">
-            <CheckCircle2 size={40} className="text-emerald-400 mx-auto mb-3" />
-            <h4 className="text-base font-semibold">Welcome to BroHood</h4>
-            <p className="text-xs text-zinc-400 mt-1">Logged in successfully. Completing your action...</p>
+          <div className="text-center py-6 space-y-2">
+            <CheckCircle2 size={40} className="text-emerald-400 mx-auto mb-2" />
+            <h3 className="text-base font-bold uppercase tracking-tight">Signed In Successfully</h3>
+            <p className="text-xs text-zinc-400">Welcome back! Redirecting you...</p>
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Google OAuth Button */}
+            {/* Google Auth */}
             <button
               onClick={handleGoogleLogin}
               disabled={loading}
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all active:scale-[0.98] shadow-lg disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-all shadow-md disabled:opacity-50"
             >
-              <svg className="w-4 h-4" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -100,40 +116,71 @@ export function AuthModal({ isOpen, onClose, onSuccess, actionContext = 'access 
               <span>Continue with Google</span>
             </button>
 
-            <div className="relative flex items-center justify-center py-2">
+            <div className="relative flex items-center justify-center">
               <div className="border-t border-white/10 w-full" />
-              <span className="bg-[#121316] px-3 text-[11px] text-zinc-500 uppercase tracking-widest font-semibold">
-                Or with email
+              <span className="bg-[#121316] px-3 text-[10px] text-zinc-500 uppercase tracking-widest font-bold">
+                Or with Email
               </span>
             </div>
 
-            {/* Email OTP / Magic Link Form */}
-            <form onSubmit={handleEmailLogin} className="space-y-3">
-              <div className="relative">
-                <Mail size={16} className="absolute left-3.5 top-3.5 text-zinc-400" />
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full bg-[#1b1c20] border border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors"
-                />
+            <form onSubmit={handleEmailSubmit} className="space-y-3">
+              <div>
+                <label className="text-xs text-zinc-400 block mb-1 font-medium">Email Address</label>
+                <div className="relative">
+                  <Mail size={15} className="absolute left-3.5 top-3.5 text-zinc-500" />
+                  <input
+                    type="email"
+                    required
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-[#18191e] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors"
+                  />
+                </div>
               </div>
+
+              <div>
+                <label className="text-xs text-zinc-400 block mb-1 font-medium">Password</label>
+                <div className="relative">
+                  <Lock size={15} className="absolute left-3.5 top-3.5 text-zinc-500" />
+                  <input
+                    type="password"
+                    required
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-[#18191e] border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors"
+                  />
+                </div>
+              </div>
+
+              {error && <p className="text-xs text-red-400">{error}</p>}
 
               <button
                 type="submit"
-                disabled={loading || !email}
-                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-semibold text-sm transition-all active:scale-[0.98] shadow-lg disabled:opacity-50"
+                disabled={loading || !email || !password}
+                className="w-full py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg active:scale-[0.99] disabled:opacity-40"
               >
-                {loading ? 'Signing in...' : 'Sign In with Email'}
+                {loading ? 'Signing In...' : 'Sign In'}
               </button>
             </form>
+
+            <div className="text-center pt-2 border-t border-white/5 text-[11px] text-zinc-400">
+              New customer?{' '}
+              <Link
+                href="/register"
+                onClick={onClose}
+                className="text-amber-400 font-bold hover:underline"
+              >
+                Create an account
+              </Link>
+            </div>
           </div>
         )}
 
-        <div className="mt-6 text-center text-[11px] text-zinc-500">
-          By signing in, you agree to BroHood’s Terms of Service & Privacy Policy.
+        <div className="mt-4 flex items-center justify-center gap-1.5 text-[10px] text-zinc-500">
+          <ShieldCheck size={13} className="text-emerald-400" />
+          <span>256-Bit SSL Encrypted • Fast &amp; Secure Checkout</span>
         </div>
       </div>
     </div>

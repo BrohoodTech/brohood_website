@@ -62,13 +62,13 @@ function OrderConfirmationContent() {
           </div>
         </div>
 
-        {/* WhatsApp Video Verification CTA */}
+        {/* WhatsApp Real-Time Tracking Updates CTA */}
         <div className="p-4 rounded-2xl bg-[#18191e] border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <MessageCircle size={20} className="text-[#25D366] flex-shrink-0" />
             <div className="text-xs">
-              <p className="font-bold text-white">Want Live Video Verification?</p>
-              <p className="text-zinc-400 text-[11px]">Get WhatsApp updates & video of your packed parcel.</p>
+              <p className="font-bold text-white">Get Real-Time Tracking on WhatsApp</p>
+              <p className="text-zinc-400 text-[11px]">Receive direct Blue Dart &amp; Delhivery AWB dispatch alerts.</p>
             </div>
           </div>
           <a

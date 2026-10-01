@@ -191,24 +191,50 @@ export default function CartPage() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleApplyPromo} className="space-y-1.5">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Enter promo code (e.g. FIRST10)"
-                      value={promoInput}
-                      onChange={(e) => setPromoInput(e.target.value)}
-                      className="flex-1 bg-[#18191e] border border-white/10 rounded-xl px-3 py-2 text-xs text-white uppercase placeholder-zinc-500 focus:outline-none focus:border-amber-400"
-                    />
-                    <button
-                      type="submit"
-                      className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs rounded-xl transition-colors"
-                    >
-                      Apply
-                    </button>
+                <div className="space-y-2">
+                  <form onSubmit={handleApplyPromo} className="space-y-1.5">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter promo code (e.g. FIRST10)"
+                        value={promoInput}
+                        onChange={(e) => setPromoInput(e.target.value)}
+                        className="flex-1 bg-[#18191e] border border-white/10 rounded-xl px-3 py-2 text-xs text-white uppercase placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                      />
+                      <button
+                        type="submit"
+                        className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold text-xs rounded-xl transition-colors"
+                      >
+                        Apply
+                      </button>
+                    </div>
+                    {promoError && <p className="text-[11px] text-red-400">{promoError}</p>}
+                  </form>
+
+                  {/* 1-Tap Quick Apply Coupon Chips */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {[
+                      { code: 'FIRST10', label: '10% OFF' },
+                      { code: 'BROHOOD500', label: '₹500 OFF' },
+                      { code: 'EXTRA50', label: '₹50 OFF' },
+                    ].map((c) => (
+                      <button
+                        key={c.code}
+                        type="button"
+                        onClick={() => {
+                          setPromoInput(c.code);
+                          const res = applyCoupon(c.code);
+                          if (!res.success) setPromoError(res.message);
+                          else setPromoError('');
+                        }}
+                        className="px-2.5 py-1 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/25 text-[10px] font-bold flex items-center gap-1 transition-colors"
+                      >
+                        <Tag size={10} />
+                        <span>{c.code} ({c.label})</span>
+                      </button>
+                    ))}
                   </div>
-                  {promoError && <p className="text-[11px] text-red-400">{promoError}</p>}
-                </form>
+                </div>
               )}
 
               {/* Price Breakdown */}

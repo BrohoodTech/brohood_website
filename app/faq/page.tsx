@@ -1,8 +1,24 @@
-'use client';
-
-import { useState } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ChevronDown, MessageCircle, HelpCircle, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, HelpCircle } from 'lucide-react';
+import { FaqAccordion } from '@/components/faq-accordion';
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://brohood.in';
+
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions & 1:1 Quality Guide',
+  description:
+    'Read answers about BroHood 1:1 master copy watches, hype sneakers, Cash on Delivery (COD) payment terms, real-time courier tracking, and 7-day doorstep replacement.',
+  alternates: {
+    canonical: `${baseUrl}/faq`,
+  },
+  openGraph: {
+    title: 'FAQs & 1:1 Quality Guide | BroHood India',
+    description:
+      'Learn how BroHood delivers 1:1 first-copy luxury watches, hype sneakers, and streetwear with COD across India.',
+    url: `${baseUrl}/faq`,
+  },
+};
 
 const FAQS = [
   {
@@ -14,8 +30,8 @@ const FAQS = [
     a: 'You can select "Cash on Delivery" at checkout with zero advance payment required. When your package arrives via our courier partners (Delhivery or BlueDart Express), you can inspect the sealed tamper-proof parcel and pay the delivery executive in cash or via UPI (GPay/PhonePe).',
   },
   {
-    q: 'Can I see a video of my product before dispatch?',
-    a: 'Yes, absolutely! We understand trust is everything. Simply message us on WhatsApp with your order number, or click the WhatsApp button on the product page. Our team will share a live 4K video showing the details, automatic second-hand sweep, or shoe stitching before packing.',
+    q: 'How does shipping and order tracking work?',
+    a: 'Every order is processed and packed with official brand hardcase packaging directly from our master workshop network. As soon as your order is handed over to our express logistics partners (Blue Dart, Delhivery, or DTDC), an active tracking AWB code is sent directly to your phone via SMS and WhatsApp. You can also track your order live anytime on our Track Order page.',
   },
   {
     q: 'What packaging is included with watches and sneakers?',
@@ -32,72 +48,48 @@ const FAQS = [
 ];
 
 export default function FAQPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 sm:py-16 text-white space-y-8">
-      <div>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors mb-2"
-        >
-          <ArrowLeft size={13} />
-          <span>Home</span>
-        </Link>
-        <div className="flex items-center gap-2">
-          <HelpCircle size={24} className="text-amber-400" />
-          <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">
-            Frequently Asked Questions
-          </h1>
-        </div>
-        <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-          Everything you need to know about our 1:1 master copy collections, COD, and video verification.
-        </p>
-      </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
-      <div className="divide-y divide-white/5 bg-[#121316] border border-white/5 rounded-3xl p-4 sm:p-6 shadow-xl">
-        {FAQS.map((faq, idx) => {
-          const isOpen = openIndex === idx;
-          return (
-            <div key={idx} className="py-4 first:pt-0 last:pb-0">
-              <button
-                onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className="w-full flex items-center justify-between text-left text-xs sm:text-sm font-bold text-white hover:text-amber-400 transition-colors"
-              >
-                <span>{faq.q}</span>
-                <ChevronDown
-                  size={16}
-                  className={`text-amber-400 transition-transform duration-200 flex-shrink-0 ml-2 ${
-                    isOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-              {isOpen && (
-                <p className="text-xs text-zinc-300 leading-relaxed mt-2.5 pr-6 animate-fade-in">
-                  {faq.a}
-                </p>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Still Have Questions Box */}
-      <div className="p-6 rounded-3xl bg-gradient-to-r from-[#18191f] to-[#121316] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div className="max-w-4xl mx-auto px-4 py-8 sm:py-16 text-white space-y-8">
         <div>
-          <h3 className="text-sm font-bold text-white uppercase">Still have questions?</h3>
-          <p className="text-xs text-zinc-400 mt-0.5">Talk to our product specialists directly on WhatsApp.</p>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors mb-2"
+          >
+            <ArrowLeft size={13} />
+            <span>Home</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <HelpCircle size={24} className="text-amber-400" />
+            <h1 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">
+              Frequently Asked Questions
+            </h1>
+          </div>
+          <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+            Everything you need to know about our 1:1 master copy collections, COD, and order tracking.
+          </p>
         </div>
-        <a
-          href="https://wa.me/919876543210?text=Hi%20BroHood%2C%20I%20have%20a%20question%20before%20placing%20my%20order."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-5 py-2.5 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg flex items-center gap-2 flex-shrink-0"
-        >
-          <MessageCircle size={15} />
-          <span>Chat on WhatsApp</span>
-        </a>
+
+        <FaqAccordion faqs={FAQS} />
       </div>
-    </div>
+    </>
   );
 }

@@ -1,5 +1,16 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Shield } from 'lucide-react';
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://brohood.in';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description: 'Terms of service, purchasing conditions, order verification, and Cash on Delivery rules for BroHood India.',
+  alternates: {
+    canonical: `${baseUrl}/terms`,
+  },
+};
 
 export default function TermsPage() {
   return (

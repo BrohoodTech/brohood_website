@@ -14,9 +14,9 @@ function ShellInner({ children }: { children: React.ReactNode }) {
   const { isAuthModalOpen, closeAuthModal, authModalContext } = useStore();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#08080a] text-zinc-100 selection:bg-amber-400 selection:text-black pb-16 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#08080a] text-zinc-100 selection:bg-amber-400 selection:text-black pb-16 md:pb-0 w-full max-w-full overflow-x-hidden">
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
 
       {/* Global Trust Strip */}
       <section className="border-t border-white/10 bg-[#0c0d10] py-8 text-zinc-300">
@@ -33,8 +33,8 @@ function ShellInner({ children }: { children: React.ReactNode }) {
           </div>
           <div className="flex flex-col items-center">
             <MessageCircle size={24} className="text-amber-400 mb-2" />
-            <h4 className="text-xs sm:text-sm font-bold text-white">Video Call Verification</h4>
-            <p className="text-[11px] text-zinc-400 mt-0.5">Inspect product live before dispatch</p>
+            <h4 className="text-xs sm:text-sm font-bold text-white">Live Courier Tracking</h4>
+            <p className="text-[11px] text-zinc-400 mt-0.5">Blue Dart &amp; Delhivery real-time tracking</p>
           </div>
           <div className="flex flex-col items-center">
             <RotateCcw size={24} className="text-amber-400 mb-2" />
@@ -76,8 +76,10 @@ function ShellInner({ children }: { children: React.ReactNode }) {
               <li><Link href="/orders" className="hover:text-amber-400 transition-colors">Track Order</Link></li>
               <li><Link href="/account" className="hover:text-amber-400 transition-colors">My Profile</Link></li>
               <li><Link href="/wishlist" className="hover:text-amber-400 transition-colors">Wishlist</Link></li>
-              <li><span className="hover:text-amber-400 transition-colors cursor-pointer">Shipping & COD Policy</span></li>
-              <li><span className="hover:text-amber-400 transition-colors cursor-pointer">Exchange & Warranty</span></li>
+              <li><Link href="/shipping-policy" className="hover:text-amber-400 transition-colors">Shipping & COD Policy</Link></li>
+              <li><Link href="/returns-exchange" className="hover:text-amber-400 transition-colors">7-Day Exchange Policy</Link></li>
+              <li><Link href="/faq" className="hover:text-amber-400 transition-colors">FAQs & Quality Guide</Link></li>
+              <li><Link href="/contact" className="hover:text-amber-400 transition-colors">Contact & WhatsApp</Link></li>
             </ul>
           </div>
 
@@ -100,13 +102,44 @@ function ShellInner({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
-          <span>© 2026 BroHood India. All rights reserved.</span>
-          <div className="flex gap-4">
-            <span>Razorpay Secured</span>
-            <span>•</span>
-            <span>All India COD Serviceable</span>
+        <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-white/5 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            {/* Indian Payment Badges */}
+            <div className="flex items-center gap-2 flex-wrap text-[10px] font-bold text-zinc-400">
+              <span className="text-zinc-500 uppercase tracking-wider text-[9px] mr-1">Accepted Payments:</span>
+              <span className="px-2 py-0.5 rounded bg-white/10 text-white font-mono">Cash on Delivery</span>
+              <span className="px-2 py-0.5 rounded bg-white/10 text-white font-mono">Google Pay</span>
+              <span className="px-2 py-0.5 rounded bg-purple-900/40 text-purple-300 font-mono">PhonePe</span>
+              <span className="px-2 py-0.5 rounded bg-sky-900/40 text-sky-300 font-mono">Paytm UPI</span>
+              <span className="px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-300 font-mono">BHIM UPI</span>
+              <span className="px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 font-mono">RuPay / Cards</span>
+            </div>
+
+            {/* Courier Partners */}
+            <div className="flex items-center gap-2 text-[10px] text-zinc-500">
+              <span className="uppercase tracking-wider text-[9px]">Express Delivery via:</span>
+              <span className="text-zinc-300 font-semibold">Delhivery</span>
+              <span>•</span>
+              <span className="text-zinc-300 font-semibold">Blue Dart</span>
+              <span>•</span>
+              <span className="text-zinc-300 font-semibold">Xpressbees</span>
+            </div>
           </div>
+
+          <div className="pt-2 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500">
+            <span>© 2026 BroHood India. All rights reserved. Pan-India Express Service.</span>
+            <div className="flex gap-4">
+              <Link href="/privacy" className="hover:text-zinc-300 transition-colors">Privacy Policy</Link>
+              <span>•</span>
+              <Link href="/terms" className="hover:text-zinc-300 transition-colors">Terms of Service</Link>
+              <span>•</span>
+              <Link href="/shipping-policy" className="hover:text-zinc-300 transition-colors">Shipping & COD</Link>
+            </div>
+          </div>
+
+          <p className="text-[10px] text-zinc-600 text-center sm:text-left leading-relaxed">
+            Disclaimer: BroHood provides high-grade 1:1 Master Quality first-copy lifestyle recreations, retros, and accessories. All brand names and logos belong to their respective trademark holders.
+          </p>
         </div>
       </footer>
 

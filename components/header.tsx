@@ -27,7 +27,7 @@ import { AnnouncementBar } from '@/components/announcement-bar';
 import { LiveSearchModal } from '@/components/live-search-modal';
 
 export function Header() {
-  const { cartCount, wishlist, user, openAuthModal, openCartDrawer, logout } = useStore();
+  const { cartCount, wishlist, user, openAuthModal, openCartDrawer, logout, isSearchModalOpen, openSearchModal, closeSearchModal } = useStore();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -55,7 +55,7 @@ export function Header() {
     <>
       <AnnouncementBar />
 
-      <header className="sticky top-0 z-30 w-full bg-[#0a0a0c]/90 backdrop-blur-xl border-b border-white/10 text-white">
+      <header className="sticky top-0 z-30 w-full max-w-full bg-[#0a0a0c]/90 backdrop-blur-xl border-b border-white/10 text-white overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
           {/* Mobile Menu Hamburger Button */}
           <div className="flex items-center gap-3 md:hidden">
@@ -72,9 +72,6 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2 group">
             <span className="font-extrabold text-lg sm:text-xl tracking-widest uppercase bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 bg-clip-text text-transparent">
               BroHood
-            </span>
-            <span className="hidden sm:inline text-[9px] px-1.5 py-0.5 rounded bg-white/10 text-zinc-300 font-semibold uppercase tracking-wider">
-              1:1 Master Ed.
             </span>
           </Link>
 
@@ -96,8 +93,8 @@ export function Header() {
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Search Trigger */}
             <button
-              onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white text-xs transition-colors border border-white/5"
+              onClick={() => openSearchModal()}
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white text-xs transition-colors border border-white/5"
               aria-label="Search catalog"
             >
               <Search size={16} />
@@ -107,12 +104,6 @@ export function Header() {
             {/* Wishlist Button */}
             <Link
               href="/wishlist"
-              onClick={(e) => {
-                if (!user) {
-                  e.preventDefault();
-                  openAuthModal('access your wishlist');
-                }
-              }}
               className="p-2 rounded-full hover:bg-white/5 text-zinc-300 hover:text-white relative transition-colors"
               aria-label="View Wishlist"
             >
@@ -316,7 +307,7 @@ export function Header() {
                             {cat.label}
                           </span>
                         </div>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-zinc-400 font-medium">
+                        <span className="text-[11px] text-zinc-400 font-medium">
                           {cat.badge}
                         </span>
                       </Link>
@@ -391,16 +382,16 @@ export function Header() {
                 </div>
               </div>
 
-              {/* Bottom WhatsApp Video Call CTA in Drawer */}
+              {/* Bottom WhatsApp Support CTA in Drawer */}
               <div className="p-4 border-t border-white/10 bg-[#0a0a0c]">
                 <a
-                  href="https://wa.me/919876543210?text=Hi%20BroHood%2C%20I%20would%20like%20to%20request%20video%20call%20verification."
+                  href="https://wa.me/919876543210?text=Hi%20BroHood%2C%20I%20have%20an%20order%20enquiry%20or%20need%20tracking%20help."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366] text-white font-bold text-xs uppercase tracking-wider shadow-lg"
                 >
                   <MessageCircle size={16} />
-                  <span>WhatsApp Video Call</span>
+                  <span>WhatsApp Support &amp; Tracking</span>
                 </a>
               </div>
             </div>
@@ -409,7 +400,7 @@ export function Header() {
       </header>
 
       {/* Global Modals */}
-      <LiveSearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      <LiveSearchModal isOpen={isSearchModalOpen || isSearchOpen} onClose={() => { setIsSearchOpen(false); closeSearchModal(); }} />
     </>
   );
 }

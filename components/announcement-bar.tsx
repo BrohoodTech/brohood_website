@@ -1,18 +1,18 @@
 'use client';
 
-import { ShieldCheck, Truck, Sparkles, MessageCircle } from 'lucide-react';
+import { ShieldCheck, Truck, Tag, PackageCheck, MessageCircle } from 'lucide-react';
 
 export function AnnouncementBar() {
   const highlights = [
-    { icon: Truck, text: 'COD Available All India' },
-    { icon: Sparkles, text: 'Free Express Shipping Above ₹1,499' },
-    { icon: ShieldCheck, text: '1:1 Master Quality with Brand Packaging' },
-    { icon: MessageCircle, text: 'WhatsApp Video Call Verification Available' },
-    { icon: Sparkles, text: 'Use Code FIRST10 for 10% Off' },
+    { icon: Truck, text: 'COD Available All India — ₹0 Advance' },
+    { icon: PackageCheck, text: 'Free Express Shipping Above ₹1,499' },
+    { icon: ShieldCheck, text: '1:1 Master Quality with Brand Box & Papers' },
+    { icon: MessageCircle, text: '24/7 WhatsApp Order Tracking & Support' },
+    { icon: Tag, text: 'Use Code FIRST10 for 10% Off' },
   ];
 
   return (
-    <div className="w-full bg-[#0a0a0c] border-b border-white/10 text-white text-xs py-2 overflow-hidden select-none">
+    <div className="w-full max-w-full bg-[#0a0a0c] border-b border-white/10 text-white text-xs py-2 overflow-hidden select-none">
       <div className="flex animate-marquee whitespace-nowrap gap-12 items-center text-zinc-300">
         {[...highlights, ...highlights].map((item, idx) => {
           const Icon = item.icon;

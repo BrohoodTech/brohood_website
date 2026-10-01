@@ -69,6 +69,7 @@ export interface Product {
   variants: ProductVariant[];
   availableSizes: string[];
   availableColors: string[];
+  colorImages?: Record<string, string[]>;
   inStock: boolean;
 }
 
