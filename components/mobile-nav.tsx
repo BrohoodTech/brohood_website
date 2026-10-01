@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Compass, Search, ShoppingBag, Package, User } from 'lucide-react';
+import { Home, Compass, Search, ShoppingBag, Truck } from 'lucide-react';
 import { useStore } from '@/lib/store';
 
 export function MobileNav() {
@@ -78,7 +78,7 @@ export function MobileNav() {
               : 'text-zinc-400 hover:text-zinc-200'
           }`}
         >
-          <Package size={20} className={pathname.startsWith('/orders') ? 'stroke-[2.2px]' : 'stroke-[1.8px]'} />
+          <Truck size={20} className={pathname.startsWith('/orders') ? 'stroke-[2.2px]' : 'stroke-[1.8px]'} />
           <span className="text-[10px] tracking-tight mt-1">Track</span>
           {pathname.startsWith('/orders') && <span className="w-1 h-1 bg-amber-400 rounded-full mt-0.5" />}
         </Link>
